@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const dbConnect = async () => {
   try {
-    await mongoose.connect(`${process.env.MONGO_URI}/e-commerce`);
+    await mongoose.connect(`${process.env.MONGODB_URI}/e-commerce`);
     console.log('MongoDB connected successfully');
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);

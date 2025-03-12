@@ -4,8 +4,9 @@ const {
   addProduct,
   getProductById,
   removeProduct,
-} = require('../controllers/productController');
-const upload = require('../middleware/multer');
+} = require('../controllers/productController.js');
+const upload = require('../middleware/multer.js');
+const adminAuth = require('../middleware/adminAuth.js');
 
 const productRouter = express.Router();
 
@@ -13,12 +14,12 @@ const productRouter = express.Router();
 productRouter.get('/get', getProducts);
 
 // Create a product
-productRouter.post('/add',upload.fields([{'name': 'image1', maxCount:1}, {'name': 'image2', maxCount:1}, {'name': 'image3', maxCount:1}, {'name': 'image4', maxCount:1}]), addProduct);
+productRouter.post('/add', adminAuth, upload.fields([{'name': 'image1', maxCount:1}, {'name': 'image2', maxCount:1}, {'name': 'image3', maxCount:1}, {'name': 'image4', maxCount:1}]), addProduct);
 
 // Get a product by ID
 productRouter.get('/get/:id', getProductById);
 
 // Delete a product
-productRouter.delete('/remove/:id', removeProduct);
+productRouter.delete('/remove/:id',adminAuth, removeProduct);
 
 module.exports = productRouter;

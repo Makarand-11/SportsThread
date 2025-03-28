@@ -58,7 +58,7 @@ const getProducts = async(req, res) => {
 //Function for removing Product
 const removeProduct = async(req, res) => {
     try {
-        await productModel.findByIdAndDelete(req.params.id);
+        await productModel.findByIdAndDelete(req.body.id);
         res.status(200).json({success: true, message: "Product Deleted"});
     } catch (error) {
         console.log(error);
@@ -69,7 +69,7 @@ const removeProduct = async(req, res) => {
 //Function for listing single Product
 const getProductById = async(req, res) => {
     try {
-        const product = await productModel.findById(req.params.id);
+        const product = await productModel.findById(req.body.id);
         res.status(200).json({success: true, product});
     } catch (error) {
         console.log(error);

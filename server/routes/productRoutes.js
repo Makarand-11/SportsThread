@@ -20,6 +20,6 @@ productRouter.post('/add', adminAuth, upload.fields([{'name': 'image1', maxCount
 productRouter.get('/get/:id', getProductById);
 
 // Delete a product
-productRouter.delete('/remove/:id',adminAuth, removeProduct);
+productRouter.delete('/remove',adminAuth, removeProduct);
 
 module.exports = productRouter;
